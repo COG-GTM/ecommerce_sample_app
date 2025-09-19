@@ -1,0 +1,46 @@
+Jira Sample Stories Created for JT Project
+
+This file contains the 5 diverse Jira stories created for the JT project board, inspired by the COG-GTM repositories.
+
+1. **Implement Advanced Product Search and Filtering in COG-GTM/ecommerce_sample_app**
+   - Jira Key: JT-3
+   - Link: https://cog-gtm.atlassian.net/browse/JT-3
+   - Repository: COG-GTM/ecommerce_sample_app
+   - Focus: E-commerce feature enhancement with search and filtering capabilities
+
+2. **Add Real-time Analytics Dashboard with Data Visualization in COG-GTM/task-calendar-dashboard**
+   - Jira Key: JT-4
+   - Link: https://cog-gtm.atlassian.net/browse/JT-4
+   - Repository: COG-GTM/task-calendar-dashboard
+   - Focus: Analytics and data visualization improvements
+
+3. **Implement Multi-Factor Authentication and Security Enhancements in COG-GTM/Springboot-BankApp**
+   - Jira Key: JT-5
+   - Link: https://cog-gtm.atlassian.net/browse/JT-5
+   - Repository: COG-GTM/Springboot-BankApp
+   - Focus: Security enhancements for banking application
+
+4. **Optimize Employee API Performance and Add Caching Layer in COG-GTM/DropwizardEmployee**
+   - Jira Key: JT-6
+   - Link: https://cog-gtm.atlassian.net/browse/JT-6
+   - Repository: COG-GTM/DropwizardEmployee
+   - Focus: API performance optimization and caching
+
+5. **Implement Progressive Web App Features and Offline Functionality in React Application**
+   - Jira Key: JT-7
+   - Link: https://cog-gtm.atlassian.net/browse/JT-7
+   - Repository: General React application patterns
+   - Focus: PWA features and offline functionality
+
+All stories include:
+- Clear summary/title with repository name
+- Detailed description explaining the feature/task
+- 5 acceptance criteria points per story
+- "Devin" label applied to each story
+
+Stories represent diverse development scenarios including:
+- E-commerce feature development
+- Analytics and data visualization
+- Security enhancements
+- API performance optimization
+- Progressive Web App implementation
