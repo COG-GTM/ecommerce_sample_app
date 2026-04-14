@@ -20,7 +20,10 @@ const Cart = () => {
       body: JSON.stringify(cartItems),
     });
 
-    if(response.statusCode === 500) return;
+    if(!response.ok) {
+      toast.error('Checkout failed. Please try again.');
+      return;
+    }
     
     const data = await response.json();
 
