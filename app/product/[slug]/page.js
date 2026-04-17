@@ -11,10 +11,10 @@ export const revalidate = 60;
 
 export default async function ProductDetail({ params }) {
   const { slug } = await params;
-  const query = `*[_type == "product" && slug.current == '${slug}'][0]`;
+  const query = '*[_type == "product" && slug.current == $slug][0]';
   const productsQuery = '*[_type == "product"]';
 
-  const product = await client.fetch(query);
+  const product = await client.fetch(query, { slug });
   const products = await client.fetch(productsQuery);
 
   return (
