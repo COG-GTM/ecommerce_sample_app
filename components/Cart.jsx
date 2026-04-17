@@ -71,11 +71,11 @@ const Cart = () => {
                 </div>
                 <div className="flex justify-between w-[350px] text-dark-blue mt-[60px] max-800:w-[200px] max-800:mt-[30px]">
                   <div>
-                  <p className="border border-gray-500 p-1.5">
-                    <span className="text-base py-1.5 px-3 cursor-pointer border-r border-gray-500 text-primary" onClick={() => toggleCartItemQuanitity(item._id, 'dec') }>
-                    <AiOutlineMinus />
-                    </span>
-                    <span className="text-xl py-1.5 px-3 cursor-pointer border-r border-gray-500" onClick="">{item.quantity}</span>
+                                    <p className="border border-[gray] p-1.5">
+                                      <span className="text-base py-1.5 px-3 cursor-pointer border-r border-[gray] text-primary" onClick={() => toggleCartItemQuanitity(item._id, 'dec') }>
+                                      <AiOutlineMinus />
+                                      </span>
+                                      <span className="text-xl py-1.5 px-3 cursor-pointer border-r border-[gray]" onClick="">{item.quantity}</span>
                     <span className="text-base py-1.5 px-3 cursor-pointer text-qty-green" onClick={() => toggleCartItemQuanitity(item._id, 'inc') }><AiOutlinePlus /></span>
                   </p>
                   </div>

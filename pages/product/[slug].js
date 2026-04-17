@@ -54,9 +54,9 @@ const ProductDetails = ({ product, products }) => {
           <p className="font-bold text-[26px] mt-[30px] text-primary">${price}</p>
           <div className="flex gap-5 mt-2.5 items-center">
             <h3>Quantity:</h3>
-            <p className="border border-gray-500 p-1.5">
-              <span className="text-base py-1.5 px-3 cursor-pointer border-r border-gray-500 text-primary" onClick={decQty}><AiOutlineMinus /></span>
-              <span className="text-xl py-1.5 px-3 cursor-pointer border-r border-gray-500">{qty}</span>
+                        <p className="border border-[gray] p-1.5">
+                          <span className="text-base py-1.5 px-3 cursor-pointer border-r border-[gray] text-primary" onClick={decQty}><AiOutlineMinus /></span>
+                          <span className="text-xl py-1.5 px-3 cursor-pointer border-r border-[gray]">{qty}</span>
               <span className="text-base py-1.5 px-3 cursor-pointer text-qty-green" onClick={incQty}><AiOutlinePlus /></span>
             </p>
           </div>
