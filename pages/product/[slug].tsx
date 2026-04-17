@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
 import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from 'react-icons/ai';
+import type { GetStaticPaths, GetStaticProps } from 'next';
 
 import { client, urlFor } from '../../lib/client';
 import { Product } from '../../components';
 import { useStateContext } from '../../context/StateContext';
+import { Product as ProductType } from '../../types';
 
-const ProductDetails = ({ product, products }) => {
+interface ProductDetailsProps {
+  product: ProductType;
+  products: ProductType[];
+}
+
+const ProductDetails = ({ product, products }: ProductDetailsProps) => {
   const { image, name, details, price } = product;
   const [index, setIndex] = useState(0);
   const { decQty, incQty, qty, onAdd, setShowCart } = useStateContext();
@@ -21,13 +28,13 @@ const ProductDetails = ({ product, products }) => {
       <div className="product-detail-container">
         <div>
           <div className="image-container">
-            <img src={urlFor(image && image[index])} className="product-detail-image" />
+            <img src={urlFor(image && image[index]) as unknown as string} className="product-detail-image" />
           </div>
           <div className="small-images-container">
             {image?.map((item, i) => (
               <img 
                 key={i}
-                src={urlFor(item)}
+                src={urlFor(item) as unknown as string}
                 className={i === index ? 'small-image selected-image' : 'small-image'}
                 onMouseEnter={() => setIndex(i)}
               />
@@ -81,7 +88,7 @@ const ProductDetails = ({ product, products }) => {
   )
 }
 
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const query = `*[_type == "product"] {
     slug {
       current
@@ -91,7 +98,7 @@ export const getStaticPaths = async () => {
 
   const products = await client.fetch(query);
 
-  const paths = products.map((product) => ({
+  const paths = products.map((product: ProductType) => ({
     params: { 
       slug: product.slug.current
     }
@@ -103,7 +110,8 @@ export const getStaticPaths = async () => {
   }
 }
 
-export const getStaticProps = async ({ params: { slug }}) => {
+export const getStaticProps: GetStaticProps<ProductDetailsProps> = async ({ params }) => {
+  const slug = params?.slug;
   const query = `*[_type == "product" && slug.current == '${slug}'][0]`;
   const productsQuery = '*[_type == "product"]'
   

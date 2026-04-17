@@ -1,9 +1,16 @@
 import React from 'react';
+import type { GetServerSideProps } from 'next';
 
 import { client } from '../lib/client';
 import { Product, FooterBanner, HeroBanner } from '../components';
+import { Product as ProductType, Banner } from '../types';
 
-const Home = ({ products, bannerData }) => (
+interface HomeProps {
+  products: ProductType[];
+  bannerData: Banner[];
+}
+
+const Home = ({ products, bannerData }: HomeProps) => (
   <div>
     <HeroBanner heroBanner={bannerData.length && bannerData[0]}  />
     <div className="products-heading">
@@ -19,7 +26,7 @@ const Home = ({ products, bannerData }) => (
   </div>
 );
 
-export const getServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
   const query = '*[_type == "product"]';
   const products = await client.fetch(query);
 
