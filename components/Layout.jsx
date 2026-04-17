@@ -6,14 +6,14 @@ import Footer from './Footer';
 
 const Layout = ({ children }) => {
   return (
-    <div className="layout">
+    <div className="p-2.5">
       <Head>
         <title>JS Mastery Store</title>
       </Head>
       <header>
         <Navbar />
       </header>
-      <main className="main-container">
+      <main className="max-w-[1400px] mx-auto w-full">
         {children}
       </main>
       <footer>

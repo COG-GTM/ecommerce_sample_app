@@ -33,26 +33,26 @@ const Cart = () => {
   }
 
   return (
-    <div className="cart-wrapper" ref={cartRef}>
-      <div className="cart-container">
+    <div className="w-screen bg-black/50 fixed right-0 top-0 z-[100] transition-all duration-1000 ease-in-out" ref={cartRef}>
+      <div className="h-screen w-[600px] bg-white float-right py-10 px-2.5 relative max-800:w-[415px] max-800:p-1">
         <button
         type="button"
-        className="cart-heading"
+        className="flex items-center text-lg font-medium cursor-pointer gap-0.5 ml-2.5 border-none bg-transparent max-800:mt-[35px]"
         onClick={() => setShowCart(false)}>
           <AiOutlineLeft />
-          <span className="heading">Your Cart</span>
-          <span className="cart-num-items">({totalQuantities} items)</span>
+          <span className="ml-2.5">Your Cart</span>
+          <span className="ml-2.5 text-primary">({totalQuantities} items)</span>
         </button>
 
         {cartItems.length < 1 && (
-          <div className="empty-cart">
+          <div className="m-10 text-center">
             <AiOutlineShopping size={150} />
-            <h3>Your shopping bag is empty</h3>
+            <h3 className="font-semibold text-xl">Your shopping bag is empty</h3>
             <Link href="/">
               <button
                 type="button"
                 onClick={() => setShowCart(false)}
-                className="btn"
+                className="w-full max-w-[400px] py-2.5 px-3 rounded-[15px] border-none text-xl mt-10 uppercase bg-primary text-white cursor-pointer scale-100 transition-transform duration-500 ease-in-out hover:scale-110"
               >
                 Continue Shopping
               </button>
@@ -60,28 +60,28 @@ const Cart = () => {
           </div>
         )}
 
-        <div className="product-container">
+        <div className="mt-[15px] overflow-auto max-h-[70vh] py-5 px-2.5 max-800:mt-2.5">
           {cartItems.length >= 1 && cartItems.map((item) => (
-            <div className="product" key={item._id}>
-              <img src={urlFor(item?.image[0])} className="cart-product-image" />
-              <div className="item-desc">
-                <div className="flex top">
-                  <h5>{item.name}</h5>
-                  <h4>${item.price}</h4>
+            <div className="flex gap-[30px] p-5 max-800:py-5 max-800:px-[5px]" key={item._id}>
+              <img src={urlFor(item?.image[0])} className="w-[180px] h-[150px] rounded-[15px] bg-light-gray max-800:w-1/4 max-800:h-1/4" />
+              <div>
+                <div className="flex justify-between w-[350px] text-dark-blue max-800:w-[200px] max-800:flex-wrap max-800:gap-2.5">
+                  <h5 className="text-2xl max-800:text-base max-800:text-dark-blue">{item.name}</h5>
+                  <h4 className="text-xl max-800:text-base max-800:text-black">${item.price}</h4>
                 </div>
-                <div className="flex bottom">
+                <div className="flex justify-between w-[350px] text-dark-blue mt-[60px] max-800:w-[200px] max-800:mt-[30px]">
                   <div>
-                  <p className="quantity-desc">
-                    <span className="minus" onClick={() => toggleCartItemQuanitity(item._id, 'dec') }>
+                  <p className="border border-gray-500 p-1.5">
+                    <span className="text-base py-1.5 px-3 cursor-pointer border-r border-gray-500 text-primary" onClick={() => toggleCartItemQuanitity(item._id, 'dec') }>
                     <AiOutlineMinus />
                     </span>
-                    <span className="num" onClick="">{item.quantity}</span>
-                    <span className="plus" onClick={() => toggleCartItemQuanitity(item._id, 'inc') }><AiOutlinePlus /></span>
+                    <span className="text-xl py-1.5 px-3 cursor-pointer border-r border-gray-500" onClick="">{item.quantity}</span>
+                    <span className="text-base py-1.5 px-3 cursor-pointer text-qty-green" onClick={() => toggleCartItemQuanitity(item._id, 'inc') }><AiOutlinePlus /></span>
                   </p>
                   </div>
                   <button
                     type="button"
-                    className="remove-item"
+                    className="text-2xl text-primary cursor-pointer bg-transparent border-none"
                     onClick={() => onRemove(item)}
                   >
                     <TiDeleteOutline />
@@ -92,13 +92,13 @@ const Cart = () => {
           ))}
         </div>
         {cartItems.length >= 1 && (
-          <div className="cart-bottom">
-            <div className="total">
-              <h3>Subtotal:</h3>
-              <h3>${totalPrice}</h3>
+          <div className="absolute bottom-3 right-[5px] w-full py-[30px] px-[65px] max-800:px-[30px]">
+            <div className="flex justify-between">
+              <h3 className="text-[22px] max-800:text-xl">Subtotal:</h3>
+              <h3 className="text-[22px] max-800:text-xl">${totalPrice}</h3>
             </div>
-            <div className="btn-container">
-              <button type="button" className="btn" onClick={handleCheckout}>
+            <div className="w-[400px] mx-auto max-800:w-[300px]">
+              <button type="button" className="w-full max-w-[400px] py-2.5 px-3 rounded-[15px] border-none text-xl mt-10 uppercase bg-primary text-white cursor-pointer scale-100 transition-transform duration-500 ease-in-out hover:scale-110" onClick={handleCheckout}>
                 Pay with Stripe
               </button>
             </div>
