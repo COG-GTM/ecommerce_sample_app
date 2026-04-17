@@ -2,14 +2,19 @@ import React from 'react';
 import Link from 'next/link';
 
 import { urlFor } from '../lib/client';
+import { SanityProduct } from '../types';
 
-const Product = ({ product: { image, name, slug, price } }) => {
+interface ProductProps {
+  product: SanityProduct;
+}
+
+const Product: React.FC<ProductProps> = ({ product: { image, name, slug, price } }) => {
   return (
     <div>
       <Link href={`/product/${slug.current}`}>
         <div className="product-card">
           <img 
-            src={urlFor(image && image[0])}
+            src={urlFor(image && image[0]).url()}
             width={250}
             height={250}
             className="product-image"

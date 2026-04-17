@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { BsBagCheckFill } from 'react-icons/bs';
 
 import { useStateContext } from '../context/StateContext';
 import { runFireworks } from '../lib/utils';
 
-const Success = () => {
+const Success: React.FC = () => {
   const { setCartItems, setTotalPrice, setTotalQuantities } = useStateContext();
   
   useEffect(() => {
@@ -31,7 +31,7 @@ const Success = () => {
           </a>
         </p>
         <Link href="/">
-          <button type="button" width="300px" className="btn">
+          <button type="button" className="btn">
             Continue Shopping
           </button>
         </Link>
