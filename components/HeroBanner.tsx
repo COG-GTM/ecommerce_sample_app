@@ -2,15 +2,20 @@ import React from 'react';
 import Link from 'next/link';
 
 import { urlFor } from '../lib/client';
+import { SanityBanner } from '../types';
 
-const HeroBanner = ({ heroBanner }) => {
+interface HeroBannerProps {
+  heroBanner: SanityBanner;
+}
+
+const HeroBanner: React.FC<HeroBannerProps> = ({ heroBanner }) => {
   return (
     <div className="hero-banner-container">
       <div>
         <p className="beats-solo">{heroBanner.smallText}</p>
         <h3>{heroBanner.midText}</h3>
         <h1>{heroBanner.largeText1}</h1>
-        <img src={urlFor(heroBanner.image)} alt="headphones" className="hero-banner-image" />
+        <img src={urlFor(heroBanner.image) as unknown as string} alt="headphones" className="hero-banner-image" />
 
         <div>
           <Link href={`/product/${heroBanner.product}`}>
