@@ -1,4 +1,22 @@
-export default {
+interface SanityFieldOptions {
+  hotspot?: boolean;
+}
+
+interface SanityField {
+  name: string;
+  title: string;
+  type: string;
+  options?: SanityFieldOptions;
+}
+
+interface SanitySchemaDefinition {
+  name: string;
+  title: string;
+  type: string;
+  fields: SanityField[];
+}
+
+const banner: SanitySchemaDefinition = {
   name: 'banner',
   title: 'Banner',
   type: 'document',
@@ -58,3 +76,5 @@ export default {
       },
   ],
 };
+
+export default banner;
