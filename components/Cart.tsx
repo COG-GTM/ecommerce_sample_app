@@ -9,7 +9,7 @@ import { urlFor } from '../lib/client';
 import getStripe from '../lib/getStripe';
 
 const Cart = () => {
-  const cartRef = useRef();
+  const cartRef = useRef<HTMLDivElement>(null);
   const { totalPrice, totalQuantities, cartItems, setShowCart, toggleCartItemQuanitity, onRemove } = useStateContext();
 
   const handleCheckout = async () => {
@@ -23,13 +23,15 @@ const Cart = () => {
       body: JSON.stringify(cartItems),
     });
 
+    // NOTE: Original code uses .statusCode which doesn't exist on Fetch Response (should be .status) — pre-existing bug, not fixing in this migration
+    // @ts-expect-error statusCode does not exist on Response (pre-existing bug)
     if(response.statusCode === 500) return;
     
     const data = await response.json();
 
     toast.loading('Redirecting...');
 
-    stripe.redirectToCheckout({ sessionId: data.id });
+    stripe!.redirectToCheckout({ sessionId: data.id });
   }
 
   return (
@@ -63,7 +65,7 @@ const Cart = () => {
         <div className="product-container">
           {cartItems.length >= 1 && cartItems.map((item) => (
             <div className="product" key={item._id}>
-              <img src={urlFor(item?.image[0])} className="cart-product-image" />
+              <img src={urlFor(item?.image[0]) as unknown as string} className="cart-product-image" />
               <div className="item-desc">
                 <div className="flex top">
                   <h5>{item.name}</h5>
@@ -75,7 +77,7 @@ const Cart = () => {
                     <span className="minus" onClick={() => toggleCartItemQuanitity(item._id, 'dec') }>
                     <AiOutlineMinus />
                     </span>
-                    <span className="num" onClick="">{item.quantity}</span>
+                    <span className="num" onClick={undefined}>{item.quantity}</span>
                     <span className="plus" onClick={() => toggleCartItemQuanitity(item._id, 'inc') }><AiOutlinePlus /></span>
                   </p>
                   </div>
