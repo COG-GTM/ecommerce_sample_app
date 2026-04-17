@@ -1,4 +1,25 @@
-export default {
+interface SanityFieldOptions {
+  hotspot?: boolean;
+  source?: string;
+  maxLength?: number;
+}
+
+interface SanityField {
+  name: string;
+  title: string;
+  type: string;
+  of?: { type: string }[];
+  options?: SanityFieldOptions;
+}
+
+interface SanitySchemaDefinition {
+  name: string;
+  title: string;
+  type: string;
+  fields: SanityField[];
+}
+
+const product: SanitySchemaDefinition = {
   name: 'product',
   title: 'Product',
   type: 'document',
@@ -37,4 +58,6 @@ export default {
       type: 'string',
     }
   ]
-}
+};
+
+export default product;
