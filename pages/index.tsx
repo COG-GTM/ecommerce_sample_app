@@ -12,7 +12,7 @@ interface HomeProps {
 
 const Home: React.FC<HomeProps> = ({ products, bannerData }) => (
   <div>
-    <HeroBanner heroBanner={bannerData.length ? bannerData[0] : {} as SanityBanner}  />
+    {bannerData.length > 0 && <HeroBanner heroBanner={bannerData[0]} />}
     <div className="products-heading">
       <h2>Best Seller Products</h2>
       <p>speaker There are many variations passages</p>
@@ -22,7 +22,7 @@ const Home: React.FC<HomeProps> = ({ products, bannerData }) => (
       {products?.map((product) => <Product key={product._id} product={product} />)}
     </div>
 
-    <FooterBanner footerBanner={bannerData && bannerData[0]} />
+    {bannerData.length > 0 && <FooterBanner footerBanner={bannerData[0]} />}
   </div>
 );
 
