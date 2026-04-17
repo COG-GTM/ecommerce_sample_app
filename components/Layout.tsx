@@ -4,7 +4,11 @@ import Head from 'next/head';
 import Navbar from './Navbar';
 import Footer from './Footer';
 
-const Layout = ({ children }) => {
+interface LayoutProps {
+  children: React.ReactNode;
+}
+
+const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className="layout">
       <Head>
