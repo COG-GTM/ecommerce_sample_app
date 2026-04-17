@@ -19,7 +19,7 @@ const Success = () => {
   return (
     <div className="bg-white min-h-[60vh] max-800:min-h-[69vh]">
       <div className="w-[1000px] mx-auto mt-[160px] bg-medium-gray p-[50px] rounded-[15px] flex justify-center items-center flex-col max-800:w-[370px] max-800:mt-[100px] max-800:p-5 max-800:h-[350px]">
-        <p className="text-green-600 text-[40px]">
+        <p className="text-[green] text-[40px]">
           <BsBagCheckFill />
         </p>
         <h2 className="capitalize mt-[15px] font-black text-[40px] text-dark-blue max-800:text-[17px]">Thank you for your order!</h2>
