@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
 import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from 'react-icons/ai';
+import { GetStaticPaths, GetStaticProps } from 'next';
 
 import { client, urlFor } from '../../lib/client';
 import { Product } from '../../components';
 import { useStateContext } from '../../context/StateContext';
+import { SanityProduct } from '../../types';
 
-const ProductDetails = ({ product, products }) => {
+interface ProductDetailsProps {
+  product: SanityProduct;
+  products: SanityProduct[];
+}
+
+const ProductDetails: React.FC<ProductDetailsProps> = ({ product, products }) => {
   const { image, name, details, price } = product;
   const [index, setIndex] = useState(0);
   const { decQty, incQty, qty, onAdd, setShowCart } = useStateContext();
@@ -21,13 +28,13 @@ const ProductDetails = ({ product, products }) => {
       <div className="product-detail-container">
         <div>
           <div className="image-container">
-            <img src={urlFor(image && image[index])} className="product-detail-image" />
+            <img src={urlFor(image && image[index]).url()} className="product-detail-image" />
           </div>
           <div className="small-images-container">
             {image?.map((item, i) => (
               <img 
                 key={i}
-                src={urlFor(item)}
+                src={urlFor(item).url()}
                 className={i === index ? 'small-image selected-image' : 'small-image'}
                 onMouseEnter={() => setIndex(i)}
               />
@@ -81,7 +88,7 @@ const ProductDetails = ({ product, products }) => {
   )
 }
 
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const query = `*[_type == "product"] {
     slug {
       current
@@ -89,7 +96,7 @@ export const getStaticPaths = async () => {
   }
   `;
 
-  const products = await client.fetch(query);
+  const products: SanityProduct[] = await client.fetch(query);
 
   const paths = products.map((product) => ({
     params: { 
@@ -103,14 +110,13 @@ export const getStaticPaths = async () => {
   }
 }
 
-export const getStaticProps = async ({ params: { slug }}) => {
+export const getStaticProps: GetStaticProps<ProductDetailsProps> = async ({ params }) => {
+  const slug = params?.slug as string;
   const query = `*[_type == "product" && slug.current == '${slug}'][0]`;
   const productsQuery = '*[_type == "product"]'
   
   const product = await client.fetch(query);
   const products = await client.fetch(productsQuery);
-
-  console.log(product);
 
   return {
     props: { products, product }

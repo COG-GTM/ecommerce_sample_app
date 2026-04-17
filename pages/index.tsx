@@ -1,11 +1,18 @@
 import React from 'react';
+import { GetServerSideProps } from 'next';
 
 import { client } from '../lib/client';
 import { Product, FooterBanner, HeroBanner } from '../components';
+import { SanityProduct, SanityBanner } from '../types';
 
-const Home = ({ products, bannerData }) => (
+interface HomeProps {
+  products: SanityProduct[];
+  bannerData: SanityBanner[];
+}
+
+const Home: React.FC<HomeProps> = ({ products, bannerData }) => (
   <div>
-    <HeroBanner heroBanner={bannerData.length && bannerData[0]}  />
+    {bannerData.length > 0 && <HeroBanner heroBanner={bannerData[0]} />}
     <div className="products-heading">
       <h2>Best Seller Products</h2>
       <p>speaker There are many variations passages</p>
@@ -15,11 +22,11 @@ const Home = ({ products, bannerData }) => (
       {products?.map((product) => <Product key={product._id} product={product} />)}
     </div>
 
-    <FooterBanner footerBanner={bannerData && bannerData[0]} />
+    {bannerData.length > 0 && <FooterBanner footerBanner={bannerData[0]} />}
   </div>
 );
 
-export const getServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
   const query = '*[_type == "product"]';
   const products = await client.fetch(query);
 

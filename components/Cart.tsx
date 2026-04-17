@@ -7,9 +7,10 @@ import toast from 'react-hot-toast';
 import { useStateContext } from '../context/StateContext';
 import { urlFor } from '../lib/client';
 import getStripe from '../lib/getStripe';
+import { CartItem } from '../types';
 
-const Cart = () => {
-  const cartRef = useRef();
+const Cart: React.FC = () => {
+  const cartRef = useRef<HTMLDivElement>(null);
   const { totalPrice, totalQuantities, cartItems, setShowCart, toggleCartItemQuanitity, onRemove } = useStateContext();
 
   const handleCheckout = async () => {
@@ -23,13 +24,13 @@ const Cart = () => {
       body: JSON.stringify(cartItems),
     });
 
-    if(response.statusCode === 500) return;
+    if(response.status === 500) return;
     
     const data = await response.json();
 
     toast.loading('Redirecting...');
 
-    stripe.redirectToCheckout({ sessionId: data.id });
+    stripe?.redirectToCheckout({ sessionId: data.id });
   }
 
   return (
@@ -61,9 +62,9 @@ const Cart = () => {
         )}
 
         <div className="product-container">
-          {cartItems.length >= 1 && cartItems.map((item) => (
+          {cartItems.length >= 1 && cartItems.map((item: CartItem) => (
             <div className="product" key={item._id}>
-              <img src={urlFor(item?.image[0])} className="cart-product-image" />
+              <img src={urlFor(item?.image[0]).url()} className="cart-product-image" />
               <div className="item-desc">
                 <div className="flex top">
                   <h5>{item.name}</h5>
@@ -75,7 +76,7 @@ const Cart = () => {
                     <span className="minus" onClick={() => toggleCartItemQuanitity(item._id, 'dec') }>
                     <AiOutlineMinus />
                     </span>
-                    <span className="num" onClick="">{item.quantity}</span>
+                    <span className="num">{item.quantity}</span>
                     <span className="plus" onClick={() => toggleCartItemQuanitity(item._id, 'inc') }><AiOutlinePlus /></span>
                   </p>
                   </div>
