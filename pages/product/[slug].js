@@ -21,7 +21,7 @@ const ProductDetails = ({ product, products }) => {
       <div className="flex gap-10 m-10 mt-[60px] text-dark-blue max-800:flex-wrap max-800:m-5">
         <div>
           <div>
-            <img src={urlFor(image && image[index])} className="rounded-[15px] bg-light-gray w-[400px] h-[400px] cursor-pointer transition-[0.3s] ease-in-out hover:bg-primary max-800:w-[350px] max-800:h-[350px]" />
+            <img src={urlFor(image && image[index])} className="rounded-[15px] bg-light-gray w-[400px] h-[400px] cursor-pointer transition-all duration-300 ease-in-out hover:bg-primary max-800:w-[350px] max-800:h-[350px]" />
           </div>
           <div className="flex gap-2.5 mt-5">
             {image?.map((item, i) => (

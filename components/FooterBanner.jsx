@@ -18,7 +18,7 @@ const FooterBanner = ({ footerBanner: { discount, largeText1, largeText2, saleTi
           <h3 className="font-extrabold text-[60px] max-800:text-[45px]">{midText}</h3>
           <p className="text-lg max-800:text-lg">{desc}</p>
           <Link href={`/product/${product}`}>
-            <button type="button" className="rounded-[15px] py-2.5 px-4 bg-white text-red-500 border-none mt-10 text-lg font-medium cursor-pointer">{buttonText}</button>
+            <button type="button" className="rounded-[15px] py-2.5 px-4 bg-white text-[red] border-none mt-10 text-lg font-medium cursor-pointer">{buttonText}</button>
           </Link>
         </div>
 
