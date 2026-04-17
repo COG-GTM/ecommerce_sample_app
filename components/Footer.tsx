@@ -1,7 +1,7 @@
 import React from 'react';
 import { AiFillInstagram, AiOutlineTwitter} from 'react-icons/ai';
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
     <div className="footer-container">
       <p>2022 JSM Headphones All rights reserverd</p>

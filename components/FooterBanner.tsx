@@ -2,8 +2,13 @@ import React from 'react';
 import Link from 'next/link';
 
 import { urlFor } from '../lib/client';
+import { SanityBanner } from '../types';
 
-const FooterBanner = ({ footerBanner: { discount, largeText1, largeText2, saleTime, smallText, midText, desc, product, buttonText, image } }) => {
+interface FooterBannerProps {
+  footerBanner: SanityBanner;
+}
+
+const FooterBanner: React.FC<FooterBannerProps> = ({ footerBanner: { discount, largeText1, largeText2, saleTime, smallText, midText, desc, product, buttonText, image } }) => {
   return (
     <div className="footer-banner-container">
       <div className="banner-desc">
@@ -23,7 +28,7 @@ const FooterBanner = ({ footerBanner: { discount, largeText1, largeText2, saleTi
         </div>
 
         <img 
-          src={urlFor(image)} className="footer-banner-image"
+          src={urlFor(image).url()} className="footer-banner-image"
         />
       </div>
     </div>
