@@ -44,9 +44,11 @@ export const StateContext = ({ children }: { children: React.ReactNode }) => {
           ...cartProduct,
           quantity: cartProduct.quantity + quantity
         }
+        // NOTE: Original code missing return here — pre-existing bug producing undefined for non-matching items
+        return cartProduct;
       })
 
-      setCartItems(updatedCartItems as CartItem[]);
+      setCartItems(updatedCartItems);
     } else {
       product.quantity = quantity;
       

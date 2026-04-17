@@ -23,7 +23,9 @@ const Cart = () => {
       body: JSON.stringify(cartItems),
     });
 
-    if((response as any).statusCode === 500) return;
+    // NOTE: Original code uses .statusCode which doesn't exist on Fetch Response (should be .status) — pre-existing bug, not fixing in this migration
+    // @ts-expect-error statusCode does not exist on Response (pre-existing bug)
+    if(response.statusCode === 500) return;
     
     const data = await response.json();
 
