@@ -53,7 +53,7 @@ export const StateContext = ({ children }: { children: React.ReactNode }) => {
       setCartItems([...cartItems, cartProduct]);
     }
 
-    toast.success(`${qty} ${product.name} added to the cart.`);
+    toast.success(`${quantity} ${product.name} added to the cart.`);
   } 
 
   const onRemove = (product: CartItem) => {
