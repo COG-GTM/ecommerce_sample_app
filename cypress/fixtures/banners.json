@@ -1,0 +1,23 @@
+{
+  "result": [
+    {
+      "_id": "banner1",
+      "smallText": "Beats Solo Air",
+      "midText": "Summer Sale",
+      "largeText1": "FINE",
+      "largeText2": "SMILE",
+      "discount": "20% OFF",
+      "saleTime": "15 Nov to 7 Dec",
+      "desc": "Best headphones on sale",
+      "product": "headphones-pro",
+      "buttonText": "Shop Now",
+      "image": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-banner-555x555-webp",
+          "_type": "reference"
+        }
+      }
+    }
+  ]
+}
