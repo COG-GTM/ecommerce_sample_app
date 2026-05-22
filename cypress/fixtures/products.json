@@ -1,0 +1,36 @@
+{
+  "result": [
+    {
+      "_id": "prod1",
+      "name": "Headphones Pro",
+      "slug": { "current": "headphones-pro" },
+      "price": 249,
+      "details": "Premium wireless headphones with noise cancellation",
+      "image": [
+        {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-abc123-555x555-webp",
+            "_type": "reference"
+          }
+        }
+      ]
+    },
+    {
+      "_id": "prod2",
+      "name": "Earbuds Elite",
+      "slug": { "current": "earbuds-elite" },
+      "price": 149,
+      "details": "True wireless earbuds with deep bass",
+      "image": [
+        {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-def456-555x555-webp",
+            "_type": "reference"
+          }
+        }
+      ]
+    }
+  ]
+}
