@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 import { useStateContext } from '../context/StateContext';
 import { urlFor } from '../lib/client';
 import getStripe from '../lib/getStripe';
+import { SHIPPING_FEE } from '../lib/utils';
 
 const Cart = () => {
   const cartRef = useRef();
@@ -96,6 +97,14 @@ const Cart = () => {
             <div className="total">
               <h3>Subtotal:</h3>
               <h3>${totalPrice}</h3>
+            </div>
+            <div className="total">
+              <h3>Shipping:</h3>
+              <h3>${SHIPPING_FEE}</h3>
+            </div>
+            <div className="total total-due">
+              <h3>Total:</h3>
+              <h3>${totalPrice + SHIPPING_FEE}</h3>
             </div>
             <div className="btn-container">
               <button type="button" className="btn" onClick={handleCheckout}>
