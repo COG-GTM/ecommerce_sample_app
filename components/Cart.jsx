@@ -96,6 +96,14 @@ const Cart = () => {
           <div className="cart-bottom">
             <div className="total">
               <h3>Subtotal:</h3>
+              <h3>${totalPrice}</h3>
+            </div>
+            <div className="total">
+              <h3>Shipping:</h3>
+              <h3>${SHIPPING_FEE}</h3>
+            </div>
+            <div className="total total-due">
+              <h3>Total:</h3>
               <h3>${totalPrice + SHIPPING_FEE}</h3>
             </div>
             <div className="btn-container">

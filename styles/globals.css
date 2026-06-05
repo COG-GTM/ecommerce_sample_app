@@ -370,10 +370,21 @@ padding: 20px 10px;
 .total{
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .total h3{
+  font-size: 18px;
+  color: #324d67;
+  margin: 4px 0;
+}
+.total-due{
+  border-top: 1px solid #e1e1e1;
+  margin-top: 8px;
+  padding-top: 8px;
+}
+.total-due h3{
   font-size: 22px;
-
+  color: black;
 }
 .remove-item{
   font-size: 24px;
