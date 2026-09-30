@@ -23,3 +23,11 @@ In this video, you'll learn:
 ![image](https://user-images.githubusercontent.com/70088342/160780381-7c947640-422e-4729-abae-21911e9bc716.png)
 ![image](https://user-images.githubusercontent.com/70088342/160780549-111ed048-cd4b-4740-b2fd-2c6fc3520c52.png)
 ![image](https://user-images.githubusercontent.com/70088342/160780884-22d6025e-9b7d-4493-8136-b3dfbf00a32f.png)
+
+## Environment variables
+
+Copy `.env.example` to `.env.local` (git-ignored) and fill in the values. Secrets must never use the `NEXT_PUBLIC_` prefix, because Next.js inlines those into the browser bundle:
+
+- `SANITY_READ_TOKEN` (optional, server-only): read-only Sanity token, used by `lib/sanity.server.js` in `getServerSideProps`/`getStaticProps`. Not needed when the dataset is public.
+- `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`: Stripe publishable key (safe to expose).
+- `STRIPE_SECRET_KEY` (server-only): Stripe secret key, used by `pages/api/stripe.js`.

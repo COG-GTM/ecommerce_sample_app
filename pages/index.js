@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { client } from '../lib/client';
+import { serverClient } from '../lib/sanity.server';
 import { Product, FooterBanner, HeroBanner } from '../components';
 
 const Home = ({ products, bannerData }) => (
@@ -21,10 +21,10 @@ const Home = ({ products, bannerData }) => (
 
 export const getServerSideProps = async () => {
   const query = '*[_type == "product"]';
-  const products = await client.fetch(query);
+  const products = await serverClient.fetch(query);
 
   const bannerQuery = '*[_type == "banner"]';
-  const bannerData = await client.fetch(bannerQuery);
+  const bannerData = await serverClient.fetch(bannerQuery);
 
   return {
     props: { products, bannerData }

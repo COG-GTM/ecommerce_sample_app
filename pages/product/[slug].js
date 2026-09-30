@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from 'react-icons/ai';
 
-import { client, urlFor } from '../../lib/client';
+import { urlFor } from '../../lib/client';
+import { serverClient } from '../../lib/sanity.server';
 import { Product } from '../../components';
 import { useStateContext } from '../../context/StateContext';
 
@@ -89,7 +90,7 @@ export const getStaticPaths = async () => {
   }
   `;
 
-  const products = await client.fetch(query);
+  const products = await serverClient.fetch(query);
 
   const paths = products.map((product) => ({
     params: { 
@@ -104,11 +105,11 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async ({ params: { slug }}) => {
-  const query = `*[_type == "product" && slug.current == '${slug}'][0]`;
+  const query = '*[_type == "product" && slug.current == $slug][0]';
   const productsQuery = '*[_type == "product"]'
   
-  const product = await client.fetch(query);
-  const products = await client.fetch(productsQuery);
+  const product = await serverClient.fetch(query, { slug });
+  const products = await serverClient.fetch(productsQuery);
 
   console.log(product);
 
