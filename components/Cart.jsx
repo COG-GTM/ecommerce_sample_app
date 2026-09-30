@@ -20,12 +20,15 @@ const Cart = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(cartItems),
+      body: JSON.stringify(cartItems.map(({ _id, quantity }) => ({ _id, quantity }))),
     });
 
-    if(response.statusCode === 500) return;
-    
-    const data = await response.json();
+    const data = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+      toast.error(data.error || 'Unable to start checkout.');
+      return;
+    }
 
     toast.loading('Redirecting...');
 
