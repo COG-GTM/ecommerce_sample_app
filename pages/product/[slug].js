@@ -103,14 +103,23 @@ export const getStaticPaths = async () => {
   }
 }
 
+const SLUG_PATTERN = /^[a-z0-9-]{1,90}$/;
+
 export const getStaticProps = async ({ params: { slug }}) => {
-  const query = `*[_type == "product" && slug.current == '${slug}'][0]`;
+  if (typeof slug !== 'string' || !SLUG_PATTERN.test(slug)) {
+    return { notFound: true };
+  }
+
+  const query = '*[_type == "product" && slug.current == $slug][0]';
   const productsQuery = '*[_type == "product"]'
   
-  const product = await client.fetch(query);
-  const products = await client.fetch(productsQuery);
+  const product = await client.fetch(query, { slug });
 
-  console.log(product);
+  if (!product) {
+    return { notFound: true };
+  }
+
+  const products = await client.fetch(productsQuery);
 
   return {
     props: { products, product }
