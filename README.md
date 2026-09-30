@@ -23,3 +23,7 @@ In this video, you'll learn:
 ![image](https://user-images.githubusercontent.com/70088342/160780381-7c947640-422e-4729-abae-21911e9bc716.png)
 ![image](https://user-images.githubusercontent.com/70088342/160780549-111ed048-cd4b-4740-b2fd-2c6fc3520c52.png)
 ![image](https://user-images.githubusercontent.com/70088342/160780884-22d6025e-9b7d-4493-8136-b3dfbf00a32f.png)
+
+## Configuration
+
+Set `SITE_URL` to the storefront's public origin (for example `https://shop.example.com`). The Stripe API route uses it to build the Checkout `success_url` and `cancel_url`; the request's `Origin` header is never used. On Vercel, `VERCEL_URL` is used when `SITE_URL` is unset, and `next dev` falls back to `http://localhost:3000`.
