@@ -1,9 +1,14 @@
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
+const stripe = process.env.STRIPE_SECRET_KEY ? new Stripe(process.env.STRIPE_SECRET_KEY) : null;
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
+    if (!stripe) {
+      res.status(500).json('Payments are not configured');
+      return;
+    }
+
     try {
       const params = {
         submit_type: 'pay',

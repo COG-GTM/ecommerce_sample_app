@@ -2,6 +2,18 @@
 Modern Full Stack ECommerce Application with Stripe & Sanity
 ![eCommerce](https://user-images.githubusercontent.com/70088342/160780701-7bb38a57-76bd-49a2-a4ec-49f89c50a7c7.png)
 
+## Environment variables
+
+Copy `.env.example` to `.env.local` and fill in keys from your own Stripe and Sanity accounts. `.env*` files are git-ignored; never commit real keys.
+
+| Variable | Scope | Purpose |
+| --- | --- | --- |
+| `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | browser | Stripe.js publishable key (`pk_...`) |
+| `STRIPE_SECRET_KEY` | server only | Stripe secret key (`sk_...`) used by `pages/api/stripe.js` |
+| `SANITY_TOKEN` | server only | Optional Sanity API token used by `lib/client.js` |
+
+Only `NEXT_PUBLIC_*` variables are inlined into the client bundle, so secrets must never use that prefix. In production, set them in the deployment's secret store.
+
 ## Launch your development career with project-based coaching - https://www.jsmastery.pro
 
 **Build and Deploy a fully responsive Modern Full Stack Ecommerce application with Payments functionality**. With Modern design, animations, the ability to add and edit products on the go using a CMS, all advanced cart functionalities, and most importantly the complete integration with Stripe so that you can cover REAL payments. This is the best e-commerce website project that you can currently find on YouTube!
